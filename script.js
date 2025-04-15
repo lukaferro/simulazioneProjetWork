@@ -1,0 +1,183 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('nav ul li a');
+    const sections = document.querySelectorAll('main section');
+
+    document.querySelector('#home').classList.add('active');
+
+    links.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            sections.forEach(section => section.classList.remove('active'));
+
+            const targetId = link.getAttribute('href').substring(1);
+            document.getElementById(targetId).classList.add('active');
+        });
+    });
+
+
+    const recallButton = document.getElementById('recallButton');
+    const recallModal = new bootstrap.Modal(document.getElementById('recallModal'));
+
+    recallButton.addEventListener('click', () => {
+        recallModal.show();
+    });
+
+    const recallForm = document.getElementById('recallForm');
+    recallForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const surname = document.getElementById('surname').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        console.log(`Nome: ${name}, Cognome: ${surname}, Email: ${email}, Messaggio: ${message}`);
+        alert('Lettera di richiamo inviata con successo!');
+        recallModal.hide();
+        recallForm.reset();
+    });
+});
+
+async function initializeDataTable() {
+    const url = "http://its.digitalminds.cloud/Dipendenti.json";
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Response status: ' + response.status);
+        }
+        const json = await response.json();
+        console.log(json);
+        $('#employeeTable').DataTable({
+            "columns": [
+                { "data": "categoria" },
+                { "data": "codiceFiscale" },
+                { "data": "nome" },
+                { "data": "cognome" },
+                { "data": "dataAssunzione" },
+                { "data": "nomeRiferimento" },
+            ],
+            data: json
+        });
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+async function initializeTechniciansTable() {
+    const url = "http://its.digitalminds.cloud/Dipendenti.json";
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Response status: ' + response.status);
+        }
+        const json = await response.json();
+
+        const technicians = json.filter(employee => employee.categoria === "tecnico");
+
+        console.log(technicians);
+        new DataTable('#techniciansTable', {
+            "columns": [
+                { "data": "categoria" },
+                { "data": "codiceFiscale" },
+                { "data": "nome" },
+                { "data": "cognome" },
+                { "data": "dataAssunzione" },
+                { "data": "nomeRiferimento" },
+            ],
+            data: technicians
+        });
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+async function initializeManagersTable() {
+    const url = "http://its.digitalminds.cloud/Dipendenti.json";
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Response status: ' + response.status);
+        }
+        const json = await response.json();
+
+        const managers = json.filter(employee => employee.categoria === "manager");
+
+        console.log(managers);
+        new DataTable('#managersTable', {
+            "columns": [
+                { "data": "categoria" },
+                { "data": "codiceFiscale" },
+                { "data": "nome" },
+                { "data": "cognome" },
+                { "data": "dataAssunzione" },
+                { "data": "nomeRiferimento" },
+            ],
+            data: managers
+        });
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+async function initializeDirigentiTable() {
+    const url = "http://its.digitalminds.cloud/Dipendenti.json";
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Response status: ' + response.status);
+        }
+        const json = await response.json();
+
+        const dirigenti = json.filter(employee => employee.categoria === "dirigente");
+
+        console.log(dirigenti);
+        new DataTable('#dirigentiTable', {
+            "columns": [
+                { "data": "categoria" },
+                { "data": "codiceFiscale" },
+                { "data": "nome" },
+                { "data": "cognome" },
+                { "data": "dataAssunzione" },
+                { "data": "nomeRiferimento" },
+            ],
+            data: dirigenti
+        });
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+async function initializeLeggendeTable() {
+    const url = "http://its.digitalminds.cloud/Dipendenti.json";
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Response status: ' + response.status);
+        }
+        const json = await response.json();
+
+        const date = new Date('2001-01-01');
+        const leggende = json.filter(employee => new Date(employee.dataAssunzione) < date);
+
+        console.log(leggende);
+        $('#leggendeTable').DataTable({
+            "columns": [
+                { "data": "categoria" },
+                { "data": "codiceFiscale" },
+                { "data": "nome" },
+                { "data": "cognome" },
+                { "data": "dataAssunzione" },
+                { "data": "nomeRiferimento" },
+            ],
+            data: leggende
+        });
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+initializeDataTable();
+initializeTechniciansTable();
+initializeManagersTable();
+initializeDirigentiTable();
+initializeLeggendeTable();

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+</head>
+<body class="bg-dark text-light">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li>
+                    <a href="#dipendenti">Dipendenti</a>
+                    <ul class="submenu">
+                        <li><a href="#tecnici">Tecnici</a></li>
+                        <li><a href="#manager">Manager</a></li>
+                        <li><a href="#dirigenti">Dirigenti</a></li>
+                        <li><a href="#leggende">Leggende</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="logo-container">
+                <img src="assets\Logo.png" alt="Logo" class="logo">
+            </div>
+            <button id="recallButton">Invia Lettera di Richiamo</button>
+        </nav>
+    </header>
+    <main>
+        <section id="home" class="active">
+            <h1 class="home-title">Benvenuto nella Home</h1>
+            <div class="content-row">
+                <img src="assets/andrewsax-studio-consulenza-aziendale.jpg" alt="Workify Team" class="home-image">
+                <p>Workify S.r.l. è un’azienda italiana fondata nel 2017 a Bologna, specializzata in consulenza aziendale e formazione per migliorare l’ambiente di lavoro e sviluppare le soft skills dei dipendenti. Il loro motto, "People First, Business Next", riflette la convinzione che il successo di un’azienda dipenda prima di tutto dal benessere delle persone che vi lavorano.</p>
+            </div>
+            <div class="content-row reverse">
+                <p>Nel corso degli anni, Workify ha registrato una crescita significativa, passando da un piccolo team di 10 persone a oltre 120 dipendenti distribuiti tra le sedi di Bologna, Milano e Roma.</p>
+                <img src="assets/Consulenza-aziendale-1-fb.jpg" alt="Workify Growth" class="home-image">
+            </div>
+            <div class="content-row">
+                <img src="assets/consulenza-aziendale.jpg" alt="HR Management" class="home-image">
+                <p>Con l’aumento del personale, il reparto HR ha dovuto affrontare la gestione di un volume crescente di informazioni, tra cui dati anagrafici, ruoli, sedi di lavoro, date di assunzione, corsi frequentati, scadenze di certificazioni e performance review.</p>
+            </div>
+            <div class="content-row reverse">
+                <p>Per far fronte a queste esigenze, nel 2025 Workify ha deciso di affidarti lo sviluppo di un portale web dedicato all’HR Manager, con l’obiettivo di semplificare e ottimizzare la gestione delle risorse umane.</p>
+                <img src="assets/unnamed.jpg" alt="HR Portal" class="home-image">
+            </div>
+        </section>
+        <section id="dipendenti">
+            <div class="table-container">
+                <h2>Dipendenti</h2>
+                <table id="employeeTable">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Code Fiscale</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Assumption date</th>
+                            <th>Reference name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="tecnici">
+            <div class="table-container">
+                <h2>Dipendenti Tecnici</h2>
+                <table id="techniciansTable">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Code Fiscale</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Assumption date</th>
+                            <th>Reference name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="manager">
+            <div class="table-container">
+                <h2>Dipendenti Manager</h2>
+                <table id="managersTable">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Code Fiscale</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Assumption date</th>
+                            <th>Reference name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="dirigenti">
+            <div class="table-container">
+                <h2>Dipendenti Dirigenti</h2>
+                <table id="dirigentiTable">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Code Fiscale</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Assumption date</th>
+                            <th>Reference name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="leggende">
+            <div class="table-container">
+                <h2>Dipendenti Leggende</h2>
+                <table id="leggendeTable">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Code Fiscale</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Assumption date</th>
+                            <th>Reference name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Contatti</h4>
+                <p>Email: info@workify.com</p>
+                <p>Telefono: +39 051 1234567</p>
+                <p>Indirizzo: Via delle Aziende, 10, Bologna</p>
+            </div>
+            <div class="footer-section">
+                <h4>Link Utili</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#dipendenti">Dipendenti</a></li>
+                    <li><a href="#tecnici">Tecnici</a></li>
+                    <li><a href="#manager">Manager</a></li>
+                    <li><a href="#dirigenti">Dirigenti</a></li>
+                    <li><a href="#leggende">Leggende</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Seguici</h4>
+                <p>
+                    <a href="https://facebook.com" target="_blank">Facebook</a> | 
+                    <a href="https://twitter.com" target="_blank">Twitter</a> | 
+                    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Workify S.r.l. - Tutti i diritti riservati</p>
+        </div>
+    </footer>
+    <div id="recallModal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Invia Lettera di Richiamo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="recallForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="surname" class="form-label">Cognome</label>
+                            <input type="text" class="form-control" id="surname" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Messaggio</label>
+                            <textarea class="form-control" id="message" rows="4" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" form="recallForm">Invia</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
