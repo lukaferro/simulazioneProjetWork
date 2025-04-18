@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const links = document.querySelectorAll('nav ul li a');
+    const links = document.querySelectorAll('nav ul li a, footer .footer-section ul li a'); // Include i link del footer
     const sections = document.querySelectorAll('main section');
 
     document.querySelector('#home').classList.add('active');
@@ -11,10 +11,29 @@ document.addEventListener('DOMContentLoaded', () => {
             sections.forEach(section => section.classList.remove('active'));
 
             const targetId = link.getAttribute('href').substring(1);
-            document.getElementById(targetId).classList.add('active');
+            const targetSection = document.getElementById(targetId);
+            targetSection.classList.add('active');
+
+            // Aggiorna l'URL senza ricaricare la pagina
+            history.pushState(null, '', `#${targetId}`);
         });
     });
 
+    // Aggiorna l'URL in base alla sezione visibile durante lo scroll
+    window.addEventListener('scroll', () => {
+        let currentSectionId = 'home'; // Default section
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                currentSectionId = section.id;
+            }
+        });
+
+        // Aggiorna l'URL solo se cambia la sezione
+        if (location.hash.substring(1) !== currentSectionId) {
+            history.replaceState(null, '', `#${currentSectionId}`);
+        }
+    });
 
     const recallButton = document.getElementById('recallButton');
     const recallModal = new bootstrap.Modal(document.getElementById('recallModal'));
