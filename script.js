@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const links = document.querySelectorAll('nav ul li a, footer .footer-section ul li a'); // Include i link del footer
+    const links = document.querySelectorAll('nav ul li a, footer .footer-section ul li a');
     const sections = document.querySelectorAll('main section');
 
     document.querySelector('#home').classList.add('active');
@@ -14,14 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetSection = document.getElementById(targetId);
             targetSection.classList.add('active');
 
-            // Aggiorna l'URL senza ricaricare la pagina
             history.pushState(null, '', `#${targetId}`);
         });
     });
 
-    // Aggiorna l'URL in base alla sezione visibile durante lo scroll
     window.addEventListener('scroll', () => {
-        let currentSectionId = 'home'; // Default section
+        let currentSectionId = 'home';
         sections.forEach(section => {
             const rect = section.getBoundingClientRect();
             if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
@@ -29,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Aggiorna l'URL solo se cambia la sezione
         if (location.hash.substring(1) !== currentSectionId) {
             history.replaceState(null, '', `#${currentSectionId}`);
         }
@@ -54,6 +51,40 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Lettera di richiamo inviata con successo!');
         recallModal.hide();
         recallForm.reset();
+    });
+
+    const hamburger = document.querySelector('.hamburger');
+    const navOverlay = document.getElementById('navOverlay');
+    const closeMenu = document.getElementById('closeMenu');
+
+    hamburger.addEventListener('click', () => {
+        navOverlay.classList.add('active');
+    });
+
+    closeMenu.addEventListener('click', () => {
+        navOverlay.classList.remove('active');
+    });
+
+    navOverlay.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navOverlay.classList.remove('active');
+        });
+    });
+
+    navOverlay.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            navOverlay.classList.remove('active');
+
+            const targetId = link.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+
+            sections.forEach(section => section.classList.remove('active'));
+            targetSection.classList.add('active');
+
+            history.pushState(null, '', `#${targetId}`);
+        });
     });
 });
 
@@ -96,7 +127,6 @@ async function initializeTechniciansTable() {
         console.log(technicians);
         new DataTable('#techniciansTable', {
             "columns": [
-                { "data": "categoria" },
                 { "data": "codiceFiscale" },
                 { "data": "nome" },
                 { "data": "cognome" },
@@ -124,7 +154,6 @@ async function initializeManagersTable() {
         console.log(managers);
         new DataTable('#managersTable', {
             "columns": [
-                { "data": "categoria" },
                 { "data": "codiceFiscale" },
                 { "data": "nome" },
                 { "data": "cognome" },
@@ -152,7 +181,6 @@ async function initializeDirigentiTable() {
         console.log(dirigenti);
         new DataTable('#dirigentiTable', {
             "columns": [
-                { "data": "categoria" },
                 { "data": "codiceFiscale" },
                 { "data": "nome" },
                 { "data": "cognome" },
@@ -194,6 +222,32 @@ async function initializeLeggendeTable() {
         console.error(error.message);
     }
 }
+
+function toggleMenu() {
+    const navOverlay = document.getElementById('navOverlay');
+    const hamburger = document.getElementById('hamburger');
+
+    if (navOverlay.classList.contains('active')) {
+        navOverlay.classList.remove('active');
+        hamburger.style.display = 'block';
+    } else {
+        navOverlay.classList.add('active');
+        hamburger.style.display = 'none';
+    }
+}
+
+document.querySelectorAll('#navOverlay a').forEach(link => {
+    link.addEventListener('click', () => {
+        const navOverlay = document.getElementById('navOverlay');
+        const hamburger = document.getElementById('hamburger');
+
+        navOverlay.classList.remove('active');
+        hamburger.style.display = 'block';
+    });
+});
+
+document.getElementById('hamburger').addEventListener('click', toggleMenu);
+document.getElementById('closeMenu').addEventListener('click', toggleMenu);
 
 initializeDataTable();
 initializeTechniciansTable();
