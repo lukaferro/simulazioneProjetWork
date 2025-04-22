@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function initializeDataTable() {
-    const url = "http://its.digitalminds.cloud/Dipendenti.json";
+    const url = "https://sample-apis-sigma.vercel.app/api/dipendenti";
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -114,7 +114,7 @@ async function initializeDataTable() {
 }
 
 async function initializeTechniciansTable() {
-    const url = "http://its.digitalminds.cloud/Dipendenti.json";
+    const url = "https://sample-apis-sigma.vercel.app/api/dipendenti";
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -141,7 +141,7 @@ async function initializeTechniciansTable() {
 }
 
 async function initializeManagersTable() {
-    const url = "http://its.digitalminds.cloud/Dipendenti.json";
+    const url = "https://sample-apis-sigma.vercel.app/api/dipendenti";
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -168,7 +168,7 @@ async function initializeManagersTable() {
 }
 
 async function initializeDirigentiTable() {
-    const url = "http://its.digitalminds.cloud/Dipendenti.json";
+    const url = "https://sample-apis-sigma.vercel.app/api/dipendenti";
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -195,7 +195,7 @@ async function initializeDirigentiTable() {
 }
 
 async function initializeLeggendeTable() {
-    const url = "http://its.digitalminds.cloud/Dipendenti.json";
+    const url = "https://sample-apis-sigma.vercel.app/api/dipendenti";
     try {
         const response = await fetch(url);
         if (!response.ok) {
